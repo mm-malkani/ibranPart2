@@ -1,0 +1,20 @@
+{
+  "name": "ibranpart2",
+  "version": "1.0.0",
+  "description": "forms backend node api",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "ibranraeen",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.14.2",
+    "nodemon": "^3.1.9"
+  }
+}
