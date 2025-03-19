@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { MongoClient } from "mongodb";
 
-let _db, forms_coll;
+let _db, leads_coll;
 
 const mongoConnect = async () => {
   new Promise(async (resolve, reject) => {
@@ -10,7 +10,7 @@ const mongoConnect = async () => {
     })
       .then(async (client) => {
         _db = await client.db();
-        forms_coll = _db.collection("forms");
+        leads_coll = _db.collection("leads");
         resolve();
       })
       .catch((err) => {
@@ -26,9 +26,9 @@ const mongoConnect = async () => {
     });
 };
 
-const formscoll = async () => {
-  if (url_coll) return forms_coll;
-  throw "url collection not found";
+const leadscoll = async () => {
+  if (leads_coll) return leads_coll;
+  throw "leads collection not found";
 };
 
-export { formscoll, mongoConnect };
+export { leadscoll, mongoConnect };
