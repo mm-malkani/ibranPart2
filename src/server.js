@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import { mongoConnect } from "./db/mongo.js";
-import leadRouter from "./routes/leads.js";
+import boardRouter from "./routes/12thClass.js";
 
 const app = express();
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // * Routes * //
-app.use("/v1/lead", leadRouter);
+app.use("/v1/12thclass", boardRouter);
 
 // Basic route
 app.get("/", (req, res) => {

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { MongoClient } from "mongodb";
 
-let _db, leads_coll;
+let _db, questionpapers_coll;
 
 const mongoConnect = async () => {
   new Promise(async (resolve, reject) => {
@@ -10,7 +10,7 @@ const mongoConnect = async () => {
     })
       .then(async (client) => {
         _db = await client.db();
-        leads_coll = _db.collection("leads");
+        questionpapers_coll = _db.collection("questionPapers");
         resolve();
       })
       .catch((err) => {
@@ -26,9 +26,9 @@ const mongoConnect = async () => {
     });
 };
 
-const leadscoll = async () => {
-  if (leads_coll) return leads_coll;
+const questionpapers = async () => {
+  if (questionpapers_coll) return questionpapers_coll;
   throw "leads collection not found";
 };
 
-export { leadscoll, mongoConnect };
+export { mongoConnect, questionpapers };

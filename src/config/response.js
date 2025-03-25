@@ -7,34 +7,31 @@ const success = (message, results, statusCode) => {
   };
 };
 
-const error = (message, errorData, statusCode) => {
+const error = (message, results, statusCode) => {
+  // List of common HTTP request code
   const codes = [200, 201, 400, 401, 404, 403, 409, 422, 500];
 
+  // Get matched code
   const findCode = codes.find((code) => code == statusCode);
 
   if (!findCode) statusCode = 500;
   else statusCode = findCode;
 
-  let formattedError = errorData;
-
-  if (typeof errorData?.error === "string" && errorData.error.startsWith("[")) {
-    try {
-      const parsedErrors = JSON.parse(errorData.error);
-      formattedError = parsedErrors.map((err) => ({
-        field: err.path[0],
-        message: err.message,
-      }));
-    } catch (e) {
-      console.error("Error parsing validation errors:", e);
-    }
-  }
-
   return {
     message,
     code: statusCode,
     error: true,
-    results: formattedError,
+    results,
   };
 };
 
-export { error, success };
+const validation = (errors) => {
+  return {
+    message: "Validation errors",
+    error: true,
+    code: 422,
+    errors,
+  };
+};
+
+export { error, success, validation };
